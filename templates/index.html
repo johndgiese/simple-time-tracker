@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simple Time Tracker</title>
+    <script>
+      setTimeout(function() {
+         window.location.reload(1);
+      }, 5000);
+    </script>
+  </head>
+  <body>
+    {% for name, results in totals.items() %}
+    {% if results['start'] %}
+    <p style="color: blue;">
+    {% else %}
+    <p>
+    {% endif %}
+      {{ name }} : {{ '%0.2f'| format(results['total']|float) }}
+    </p>
+    {% endfor %}
+    <form method="post">
+      <button type="submit">
+        {% if clock_running %}
+        Stop
+        {% else %}
+        Start Working
+        {% endif %}
+      </button>
+    </form>
+  </body>
+</html>
